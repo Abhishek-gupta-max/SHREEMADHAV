@@ -1,0 +1,21 @@
+.not-found {
+  min-height: 60vh;
+  display: grid;
+  align-items: center;
+}
+
+.not-found h1 {
+  font-size: var(--text-4xl);
+}
+
+.not-found .lead {
+  margin-top: var(--space-4);
+  color: var(--muted);
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}

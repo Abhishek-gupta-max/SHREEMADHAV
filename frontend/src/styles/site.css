@@ -1,0 +1,221 @@
+/* ==========================================================================
+   Public website theme.
+
+   Layout and component styling follow the reference design (utility classes,
+   Tailwind v4). Tailwind's global reset (preflight) is deliberately NOT
+   imported: base.css already provides the reset, and leaving preflight out
+   keeps the admin panel unaffected. Utilities are marked important so they
+   win over the element defaults in base.css.
+
+   Brand colours: the reference's accent/primary roles are mapped to the
+   ShreeMadhav logo palette. To change them, edit the --color-brand-*,
+   --color-navy-* and --color-gold-* values below — nothing else.
+   ========================================================================== */
+
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities) important;
+
+/* Only scan the public website for class names. */
+@source not '../pages/Admin';
+@source not '../components/admin';
+@source not '../layouts/AdminLayout.jsx';
+
+@theme {
+  --font-sans: 'Inter', 'Noto Sans Devanagari', 'Noto Sans Gurmukhi', system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  --font-heading: 'Outfit', 'Noto Sans Devanagari', 'Noto Sans Gurmukhi', 'Inter', sans-serif;
+
+  /* Primary (reference "blue") → ShreeMadhav navy */
+  --color-navy-50: #f2f5f9;
+  --color-navy-100: #e5ebf3;
+  --color-navy-200: #c9d5e6;
+  --color-navy-300: #9fb3cf;
+  --color-navy-500: #4b6890;
+  --color-navy-600: #1d4271;
+  --color-navy-700: #13325a;
+  --color-navy-800: #0f2a4d;
+  --color-navy-900: #0c2340;
+  --color-navy-950: #071528;
+
+  /* Accent (reference "red" buttons) → ShreeMadhav green */
+  --color-brand-50: #f1f7f3;
+  --color-brand-100: #e2efe8;
+  --color-brand-400: #3c9a72;
+  --color-brand-500: #2a805d;
+  --color-brand-600: #1f6b4e;
+  --color-brand-700: #17533d;
+  --color-brand-800: #12402f;
+
+  /* Highlight (reference "amber") → ShreeMadhav gold */
+  --color-gold-50: #fbf6ec;
+  --color-gold-100: #f5ecd9;
+  --color-gold-200: #ecd9b0;
+  --color-gold-300: #e3c27e;
+  --color-gold-400: #cfa95e;
+  --color-gold-500: #b98f3e;
+  --color-gold-600: #a37b2c;
+  --color-gold-700: #7f5f22;
+}
+
+/* Public pages use the reference typography. tokens.css (shared with the
+   admin panel) defines a few variables with the same names as Tailwind's
+   theme; restore Tailwind's values inside the public site so utilities such
+   as text-xl or shadow-lg render at their standard sizes. */
+.site {
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --radius-sm: 0.25rem;
+  --radius-lg: 0.5rem;
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  font-family: var(--font-sans);
+  color: #1e293b;
+  background: #fff;
+}
+
+/* Minimal element reset for the public site (what Tailwind's preflight would
+   do). Wrapped in :where() so it has zero specificity and never overrides
+   component classes such as .btn or .lang__button. */
+:where(.site a) {
+  text-decoration: none;
+}
+
+:where(.site button) {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+}
+
+:where(.site .prose a, .site .legal a) {
+  text-decoration: underline;
+}
+
+.site h1,
+.site h2,
+.site h3,
+.site h4 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+/* Scroll-triggered entrances (see hooks/useScrollAnimation.js) ---------------- */
+.scroll-fade-in,
+.scroll-fade-in-left,
+.scroll-fade-in-right,
+.scroll-scale-in {
+  opacity: 0;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.scroll-fade-in {
+  transform: translateY(20px);
+}
+
+.scroll-fade-in-left {
+  transform: translateX(-30px);
+}
+
+.scroll-fade-in-right {
+  transform: translateX(30px);
+}
+
+.scroll-scale-in {
+  transform: scale(0.95);
+}
+
+.scroll-fade-in.visible,
+.scroll-fade-in-left.visible,
+.scroll-fade-in-right.visible,
+.scroll-scale-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease both;
+}
+
+/* Notice ticker (replaces the deprecated <marquee> element) ---------------- */
+.ticker {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+}
+
+.ticker__track {
+  display: inline-flex;
+  gap: 3rem;
+  padding-left: 100%;
+  white-space: nowrap;
+  animation: ticker 38s linear infinite;
+}
+
+.ticker:hover .ticker__track,
+.ticker:focus-within .ticker__track {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Header language picker: icon-only on phones so the logo keeps its room. */
+@media (max-width: 639px) {
+  .site-nav-lang .lang__current {
+    display: none;
+  }
+
+  .site-nav-lang .lang__button {
+    padding: 0 8px;
+  }
+}
+
+/* FAQ accordion marker */
+.site details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-fade-in,
+  .scroll-fade-in-left,
+  .scroll-fade-in-right,
+  .scroll-scale-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ticker__track {
+    animation: none;
+    padding-left: 0;
+  }
+
+  .animate-fade-in-up {
+    animation: none;
+  }
+}

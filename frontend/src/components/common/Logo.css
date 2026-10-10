@@ -1,0 +1,86 @@
+.logo {
+  --mark: 48px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--navy-900);
+  flex-shrink: 0;
+}
+
+.logo__mark {
+  display: grid;
+  place-items: center;
+  width: var(--mark);
+  height: var(--mark);
+  flex-shrink: 0;
+}
+
+.logo__mark picture,
+.logo__mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.logo__text {
+  display: grid;
+  line-height: 1;
+}
+
+.logo__name {
+  font-family: var(--font-serif);
+  font-size: 1.3125rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.logo__tagline {
+  margin-top: 5px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green-700);
+}
+
+/* On navy surfaces the emblem sits on a white badge so its navy parts stay visible. */
+.logo--light {
+  color: #fff;
+}
+
+.logo--light .logo__mark {
+  padding: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.logo--light .logo__tagline {
+  color: var(--gold-400);
+}
+
+.logo--sm {
+  --mark: 40px;
+}
+
+.logo--sm .logo__name {
+  font-size: 1.125rem;
+}
+
+.logo--sm .logo__tagline {
+  font-size: 0.5625rem;
+}
+
+@media (max-width: 420px) {
+  .logo {
+    --mark: 42px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo__tagline {
+    letter-spacing: 0.12em;
+  }
+}
