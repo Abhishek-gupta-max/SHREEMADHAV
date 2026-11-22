@@ -3,6 +3,7 @@ import { useT } from '../../context/LanguageContext.jsx';
 import { useSiteSettings } from '../../context/SettingsContext.jsx';
 import { COUNTRIES } from '../../constants/options.js';
 import { publicService } from '../../services/publicService.js';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation.js';
 import { Seo } from '../../components/common/Seo.jsx';
 import { Button } from '../../components/common/Button.jsx';
 import { Icon } from '../../components/common/Icon.jsx';
@@ -48,6 +49,7 @@ export default function EmployerPage() {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
   const [submitError, setSubmitError] = useState(null);
+  useScrollAnimation();
 
   const setField = useCallback((name, value) => {
     setValues((v) => ({ ...v, [name]: value }));
