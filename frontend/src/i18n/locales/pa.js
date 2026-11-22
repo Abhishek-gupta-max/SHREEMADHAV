@@ -45,6 +45,7 @@ const pa = {
     careers: 'ਕਰੀਅਰ',
     contact: 'ਸੰਪਰਕ',
     apply: 'ਹੁਣੇ ਅਪਲਾਈ ਕਰੋ',
+    employer: 'ਮਾਲਕ',
     primary: 'ਮੁੱਖ ਨੈਵੀਗੇਸ਼ਨ',
   },
 

@@ -15,6 +15,7 @@ const WhyUsPage = lazy(() => import('../pages/WhyUs/WhyUsPage.jsx'));
 const RequirementsPage = lazy(() => import('../pages/Requirements/RequirementsPage.jsx'));
 const JobDetailPage = lazy(() => import('../pages/Requirements/JobDetailPage.jsx'));
 const ApplyPage = lazy(() => import('../pages/Apply/ApplyPage.jsx'));
+const EmployerPage = lazy(() => import('../pages/Employer/EmployerPage.jsx'));
 const ContactPage = lazy(() => import('../pages/Contact/ContactPage.jsx'));
 const PrivacyPage = lazy(() => import('../pages/Legal/PrivacyPage.jsx'));
 const TermsPage = lazy(() => import('../pages/Legal/TermsPage.jsx'));
@@ -59,6 +60,7 @@ export function AppRoutes() {
         <Route path={PATHS.legacyCareers} element={<Navigate to={`${PATHS.requirements}#openings`} replace />} />
         <Route path={`${PATHS.legacyCareers}/:slug`} element={<LegacyJobRedirect />} />
         <Route path={PATHS.apply} element={<ApplyPage />} />
+        <Route path={PATHS.employer} element={<EmployerPage />} />
         <Route path={PATHS.contact} element={<ContactPage />} />
         <Route path={PATHS.privacy} element={<PrivacyPage />} />
         <Route path={PATHS.terms} element={<TermsPage />} />

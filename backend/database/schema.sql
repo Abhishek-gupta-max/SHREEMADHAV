@@ -204,3 +204,24 @@ CREATE TABLE IF NOT EXISTS reference_counters (
   last_value       INT UNSIGNED      NOT NULL DEFAULT 0,
   PRIMARY KEY (year)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Employer enquiry submissions ---------------------------------------------------
+CREATE TABLE IF NOT EXISTS employer_enquiries (
+  id               BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  company_name     VARCHAR(200)    NOT NULL,
+  contact_person   VARCHAR(150)    NOT NULL,
+  email            VARCHAR(190)    NOT NULL,
+  phone            VARCHAR(30)     NOT NULL,
+  country          VARCHAR(100)    NOT NULL,
+  industry         VARCHAR(100)    NOT NULL,
+  requirements     TEXT            NOT NULL,
+  num_employees    INT UNSIGNED    NOT NULL,
+  message          TEXT            NULL,
+  status           ENUM('new','in_progress','resolved','archived') NOT NULL DEFAULT 'new',
+  submitted_ip     VARCHAR(45)     NULL,
+  created_at       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at       DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_employer_enquiries_status (status, created_at),
+  KEY idx_employer_enquiries_email (email)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

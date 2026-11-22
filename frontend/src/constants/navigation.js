@@ -9,6 +9,7 @@ export const MAIN_NAV = [
   { to: PATHS.process, label: 'nav.process', icon: 'clipboard' },
   { to: PATHS.whyUs, label: 'nav.whyUs', icon: 'shield' },
   { to: PATHS.requirements, label: 'nav.requirements', icon: 'file-check' },
+  { to: PATHS.employer, label: 'nav.employer', icon: 'briefcase' },
   { to: PATHS.contact, label: 'nav.contact', icon: 'phone' },
 ];
 

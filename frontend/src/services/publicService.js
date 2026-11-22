@@ -13,4 +13,5 @@ export const publicService = {
     upload('/applications', formData, { onProgress }).then((r) => r.applicationId || r.data?.applicationId),
 
   sendEnquiry: (payload) => api.post('/contact', payload),
+  sendEmployerEnquiry: (payload) => api.post('/employer-enquiries', payload),
 };

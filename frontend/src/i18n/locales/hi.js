@@ -45,6 +45,7 @@ const hi = {
     careers: 'करियर',
     contact: 'संपर्क',
     apply: 'अभी आवेदन करें',
+    employer: 'नियोक्ता',
     primary: 'मुख्य नेविगेशन',
   },
 
