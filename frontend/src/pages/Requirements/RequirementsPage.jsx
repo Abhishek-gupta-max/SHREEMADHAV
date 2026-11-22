@@ -15,7 +15,17 @@ const panel = `${card} p-8 border-l-4 border-l-navy-600 hover:shadow-lg transiti
 
 export default function RequirementsPage() {
   const { t, language } = useLanguage();
-  const jobs = useAsync((signal) => publicService.jobs({ signal }), [], { initialData: [] });
+  const jobs = useAsync(
+    async (signal) => {
+      try {
+        return await publicService.jobs({ signal });
+      } catch {
+        return []; // Show "no openings" gracefully when API is unavailable
+      }
+    },
+    [],
+    { initialData: [] },
+  );
   useScrollAnimation([jobs.data?.length]);
   const cards = t('site.requirements.cards');
 
