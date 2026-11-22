@@ -226,6 +226,18 @@ const PATHS = {
       <circle cx="12" cy="18.5" r="1" />
     </>
   ),
+  // Used by the AI assistant
+  mic: (
+    <>
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7" />
+    </>
+  ),
+  volume: <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4v-5ZM15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11" />,
+  'volume-off': <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4v-5ZM16 9.5l5 5M21 9.5l-5 5" />,
+  stop: <rect x="6.5" y="6.5" width="11" height="11" rx="1.5" />,
+  minus: <path d="M5 12h14" />,
+  send: <path d="M4 12 20 4l-6 16-2.5-6.5L4 12ZM11.5 13.5 20 4" />,
 };
 
 export function Icon({ name, size = 20, label, className, strokeWidth = 1.6 }) {

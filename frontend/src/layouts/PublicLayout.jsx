@@ -6,6 +6,7 @@ import { SiteHeader } from '../components/site/SiteHeader.jsx';
 import { SiteFooter } from '../components/site/SiteFooter.jsx';
 import { PageLoader } from '../components/common/Spinner.jsx';
 import { ErrorBoundary } from '../components/common/ErrorBoundary.jsx';
+import { AssistantWidget } from '../components/assistant/AssistantWidget.jsx';
 import '../styles/site.css';
 
 /** Scrolls to the top on navigation, or to the #hash target when present. */
@@ -43,6 +44,7 @@ export function PublicLayout() {
           </ErrorBoundary>
         </main>
         <SiteFooter />
+        <AssistantWidget />
       </div>
     </SettingsProvider>
   );

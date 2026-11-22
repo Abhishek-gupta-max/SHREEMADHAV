@@ -46,3 +46,10 @@ export const contactLimiter = limiter({
   limit: 8,
   message: 'Several messages were sent from your connection recently. Please try again in an hour.',
 });
+
+// AI assistant questions (only used when a self-hosted model is configured).
+export const assistantLimiter = limiter({
+  minutes: 10,
+  limit: 40,
+  message: 'You have asked a lot of questions in a short time. Please wait a few minutes and try again.',
+});

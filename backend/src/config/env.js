@@ -57,4 +57,15 @@ export const env = Object.freeze({
     maxFileSize: int('MAX_FILE_SIZE_MB', 5) * 1024 * 1024,
     maxSupportingFiles: int('MAX_SUPPORTING_FILES', 4),
   },
+
+  // Optional free self-hosted model for the website AI assistant.
+  // Leave ASSISTANT_PROVIDER empty to keep the assistant in demo mode.
+  assistant: {
+    provider: ['ollama', 'openai-compatible'].includes(process.env.ASSISTANT_PROVIDER) ? process.env.ASSISTANT_PROVIDER : '',
+    baseUrl: process.env.ASSISTANT_BASE_URL || '',
+    model: process.env.ASSISTANT_MODEL || '',
+    apiKey: process.env.ASSISTANT_API_KEY || '',
+    timeoutMs: int('ASSISTANT_TIMEOUT_MS', 30000),
+    maxTokens: int('ASSISTANT_MAX_TOKENS', 400),
+  },
 });

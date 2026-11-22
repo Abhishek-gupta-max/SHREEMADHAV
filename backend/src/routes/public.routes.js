@@ -5,12 +5,14 @@ import * as employer from '../controllers/employer.controller.js';
 import * as services from '../controllers/service.controller.js';
 import * as jobs from '../controllers/job.controller.js';
 import * as settings from '../controllers/settings.controller.js';
-import { applicationLimiter, contactLimiter } from '../middleware/rateLimit.js';
+import * as assistant from '../controllers/assistant.controller.js';
+import { applicationLimiter, assistantLimiter, contactLimiter } from '../middleware/rateLimit.js';
 import { applicationUpload } from '../middleware/upload.js';
 import { validate } from '../middleware/validate.js';
 import { createApplicationSchema } from '../validators/application.validator.js';
 import { createEnquirySchema } from '../validators/contact.validator.js';
 import { createEmployerEnquirySchema } from '../validators/employer.validator.js';
+import { assistantChatSchema } from '../validators/assistant.validator.js';
 import { servicesQuery, slugParam } from '../validators/content.validator.js';
 
 // Endpoints used by the public website. No authentication.
@@ -34,5 +36,9 @@ router.get('/jobs', jobs.listPublished);
 router.get('/jobs/:slug', validate(slugParam, 'params'), jobs.showPublished);
 
 router.get('/settings', settings.publicSettings);
+
+// Optional AI assistant backed by a free self-hosted model (see docs/AI_ASSISTANT.md).
+router.get('/assistant/status', assistant.status);
+router.post('/assistant/chat', assistantLimiter, validate(assistantChatSchema), assistant.chat);
 
 export default router;
